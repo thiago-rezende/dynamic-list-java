@@ -77,6 +77,22 @@ public class DynamicList<_Type> {
     }
 
     /** 
+     * Get an item from the Data Array
+     * @param index Position of the new item
+	 * @return An item from the Data Array
+     */
+    public _Type get(int index)
+    {
+        if(index >= m_size || index < 0)
+            throw new IllegalArgumentException("Out of Bounds!");
+        
+		if(m_data[index] == null)
+			throw new IllegalArgumentException("Uninitialized position!");
+		
+		return (_Type) m_data[index];
+    }
+    
+    /** 
      * Add a new item to the bottom of the list
      * @param value Value to be added in the list
      */
