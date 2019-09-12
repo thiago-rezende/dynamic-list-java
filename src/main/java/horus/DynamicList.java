@@ -79,7 +79,7 @@ public class DynamicList<_Type> {
     /** 
      * Get an item from the Data Array
      * @param index Position of the new item
-	 * @return An item from the Data Array
+     * @return An item from the Data Array
      */
     public _Type get(int index)
     {
