@@ -114,10 +114,9 @@ public class DynamicList<_Type> {
             throw new IllegalArgumentException("Out of Bounds!");
         
         for(int i = index; i < m_size; i++)
-        {
             m_data[i] = m_data[i + 1];
-            m_size--;
-        }
+        
+        m_size--;
 
         LOGGER.log(Level.INFO, "Removed from position {0}", index);
     }
