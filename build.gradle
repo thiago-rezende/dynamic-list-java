@@ -24,11 +24,16 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.0-jre'
 
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    // Use TestNG framework, also requires calling test.useTestNG() below
+    testImplementation 'org.testng:testng:6.14.3'
 }
 
 application {
     // Define the main class for the application
     mainClassName = 'horus.App'
+}
+
+test {
+    // Use TestNG for unit tests
+    useTestNG()
 }

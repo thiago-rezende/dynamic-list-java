@@ -88,8 +88,8 @@ public class DynamicList<_Type> {
         
 		if(m_data[index] == null)
 			throw new IllegalArgumentException("Uninitialized position!");
-		
-		return (_Type) m_data[index];
+        
+        return (_Type) m_data[index];
     }
     
     /** 
