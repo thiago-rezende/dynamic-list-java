@@ -101,6 +101,27 @@ public class DynamicListTest
         assertNull(list.unsafe_get(list.size()));
     }
 
+    @Test public void sort_validation()
+    {
+        DynamicList<Integer> list = new DynamicList<>();
+
+        list.unsafe_add(10, 3);
+        assertEquals(list.size(), 4);
+        list.unsafe_add(5, 1);
+        assertEquals(list.size(), 5);
+
+
+        assertNull(list.unsafe_get(0));
+        assertNull(list.unsafe_get(2));
+
+        list.sort();
+
+        assertEquals(list.get(0), (Integer) 5);
+        assertEquals(list.get(1), (Integer) 10);
+        assertNull(list.unsafe_get(3));
+        assertEquals(list.size(), 2);
+    }
+    
     @Test public void toString_validation()
     {
         DynamicList<Integer> list = new DynamicList<>();
