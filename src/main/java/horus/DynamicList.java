@@ -86,7 +86,7 @@ public class DynamicList<_Type> {
                 m_data[i] = m_data[i - 1];
         
             m_data[index] = value;
-            m_size += index - m_size;
+            m_size += index - m_size + 1;
             LOGGER.log(Level.INFO, "Added to position {0}", index);
         }
     }
