@@ -18,5 +18,12 @@ public class App {
         list.pop_front();
 
         System.out.println(list);
+        
+        LoginTime login = new LoginTime(5, 10);
+        User usr = new User("Horus");
+        usr.add_login(login);
+        DynamicList<User> users = new DynamicList<>();
+        users.push_back(usr);
+        System.out.println(users);
     }
 }
