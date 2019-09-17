@@ -203,16 +203,24 @@ public class DynamicList<_Type> {
         LOGGER.log(Level.INFO, "Removed from position {0}", index);
     }
 
-    /** 
+    /**
      * Reorder the Data Array removing the nullpointer between the values
      */
     public void sort()
     {
-        for(int i = 0; i < m_size; i++)
-        {
-            if(m_data[i] == null)
-                m_data[i] = m_data[i + 1];
-        }
+        Object[] tmp_array = new Object[m_data.length];
+
+        int pos = 0;
+
+        for(int i = 0; i < m_data.length; i++)
+            if(m_data[i] != null)
+            {
+                tmp_array[pos] = m_data[i];
+                pos++;
+            }
+
+        m_data = tmp_array;
+        m_size = pos;
     }
 
     /**
