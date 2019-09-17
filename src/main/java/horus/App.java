@@ -14,6 +14,8 @@ public class App {
         list.add("Thiago", 4);
         list.remove(4);
         list.add("Rezende", 4);
+        list.pop_back();
+        list.pop_front();
 
         System.out.println(list);
     }

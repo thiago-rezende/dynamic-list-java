@@ -32,6 +32,12 @@ public class DynamicList<_Type> {
         m_data = new Object[10];
         m_size = 0;
     }
+    
+    /** 
+     * Get the size of the Data Array
+     * @return Size of the Data Array
+     */
+    public int size() { return m_size; }
 
     /**
      * Expands list capacity
@@ -57,13 +63,42 @@ public class DynamicList<_Type> {
     }
 
     /** 
-     * Add a new item in a position of the list
+     * Add a new item in a position of the list (ordering)
      * @param value Value to be added in the list
      * @param index Position of the new item
      */
     public void add(_Type value, int index)
     {
-        if(index >= m_size || index < 0)
+        if(index >= m_data.length || index < 0)
+            throw new IllegalArgumentException("Out of Bounds!");
+
+        this.check_size();
+
+        if(index >= m_size)
+        {
+            m_data[m_size] = value;
+            m_size++;
+            LOGGER.log(Level.INFO, "Added to position {0}", m_size - 1);
+        }
+        else
+        {
+            for(int i = m_size; i > index; i--)
+                m_data[i] = m_data[i - 1];
+        
+            m_data[index] = value;
+            m_size += index - m_size;
+            LOGGER.log(Level.INFO, "Added to position {0}", index);
+        }
+    }
+
+    /** 
+     * Add a new item in a position of the list (no ordering)
+     * @param value Value to be added in the list
+     * @param index Position of the new item
+     */
+    public void unsafe_add(_Type value, int index)
+    {
+        if(index >= m_data.length || index < 0)
             throw new IllegalArgumentException("Out of Bounds!");
 
         this.check_size();
@@ -72,7 +107,8 @@ public class DynamicList<_Type> {
             m_data[i] = m_data[i - 1];
         
         m_data[index] = value;
-        m_size++;
+        m_size += index - m_size + 1;
+        //m_size++;
         LOGGER.log(Level.INFO, "Added to position {0}", index);
     }
 
@@ -92,6 +128,16 @@ public class DynamicList<_Type> {
         return (_Type) m_data[index];
     }
     
+    /** 
+     * Get an item from the Data Array (no exception handling)
+     * @param index Position of the new item
+     * @return An item from the Data Array
+     */
+    public _Type unsafe_get(int index)
+    {
+        return (_Type) m_data[index];
+    }
+
     /** 
      * Add a new item to the bottom of the list
      * @param value Value to be added in the list
@@ -120,6 +166,26 @@ public class DynamicList<_Type> {
         LOGGER.log(Level.INFO, "Added to position 0");
     }
 
+    public void pop_back()
+    {
+        if(m_size <= 0)
+            return;
+        
+        m_data[m_size - 1] = null;
+        m_size--;
+    }
+
+    public void pop_front()
+    {
+        if(m_size <= 0)
+            return;
+        
+        for(int i = 0; i < m_size; i++)
+            m_data[i] = m_data[i + 1];
+
+        m_size--;
+    }
+
     /** 
      * Removes an object from the list
      * @param index Index of the object to be removed
@@ -135,6 +201,18 @@ public class DynamicList<_Type> {
         m_size--;
 
         LOGGER.log(Level.INFO, "Removed from position {0}", index);
+    }
+
+    /** 
+     * Reorder the Data Array removing the nullpointer between the values
+     */
+    public void sort()
+    {
+        for(int i = 0; i < m_size; i++)
+        {
+            if(m_data[i] == null)
+                m_data[i] = m_data[i + 1];
+        }
     }
 
     /**
@@ -153,6 +231,28 @@ public class DynamicList<_Type> {
                 else
                     out += m_data[i].toString() + ", ";
 
+        return out;
+    }
+
+    /**
+     * Return a String with the list content (no ordering)
+     * @return A formatted string of list content
+     */
+    public String toStringWithNullPositions()
+    {
+        String out = new String("{");
+        
+        for(int i = 0; i < m_size; i++)
+            if(m_data[i] != null)
+                if(i == m_size - 1)
+                    out += m_data[i].toString() + "}";
+                else
+                    out += m_data[i].toString() + ", ";
+            else
+                if(i == m_size - 1)
+                    out += "null}";
+                else
+                    out += "null, ";
         return out;
     }
 }
