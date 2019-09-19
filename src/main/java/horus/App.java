@@ -3,8 +3,38 @@
  */
 package horus;
 
+import org.json.JSONObject;
+
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+//        UserList logins = new UserList();
+//        User usr = new User("Horus");
+//        LoginTime login = new LoginTime(5, 10);
+//        usr.add_login(login);
+//        logins.add_user(usr);
+//        logins.add_user(usr);
+//        System.out.println(logins);
+        UserList usr_lst = new UserList();
+        LoginTime login = new LoginTime(5, 10);
+        LoginTime login1 = new LoginTime(7, 20);
+        User usr = new User("Horus");
+        User usr1 = new User("Aorus");
+        usr.add_login(login);
+        usr1.add_login(login1);
+        usr_lst.add_user(usr);
+        usr_lst.add_user(usr1);
+        usr_lst.sortByName();
+        usr_lst.sortByUsage();
+        System.out.println(usr_lst);
+        JSONObject jobj = new JSONObject(usr_lst.toString());
+        System.out.println(jobj.toString(2));
+        usr_lst.remove_usersBeforeTime(8);
+        System.out.println(usr_lst);
+    }
+
+    public static void runTest()
+    {
         DynamicList<String> list = new DynamicList<>();
 
         for(int i = 0; i < 11; i++)

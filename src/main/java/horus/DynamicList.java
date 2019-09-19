@@ -12,17 +12,17 @@ public class DynamicList<_Type> {
     /**
      * DynamycList Logger
      */
-    private final static Logger LOGGER = Logger.getLogger(DynamicList.class.getName());
+    protected final static Logger LOGGER = Logger.getLogger(DynamicList.class.getName());
 
     /**
      * Data Array
      */
-    private Object[] m_data;
+    protected Object[] m_data;
 
     /**
      * Number of Objects initialized from Data Array
      */
-    private int m_size;
+    protected int m_size;
 
     /**
      * Constructs a DynamicList
@@ -31,6 +31,7 @@ public class DynamicList<_Type> {
     {
         m_data = new Object[10];
         m_size = 0;
+        LOGGER.setLevel(Level.SEVERE);
     }
     
     /** 
@@ -38,6 +39,14 @@ public class DynamicList<_Type> {
      * @return Size of the Data Array
      */
     public int size() { return m_size; }
+
+    public boolean empty()
+    {
+        if(m_size == 0)
+            return true;
+
+        return false;
+    }
 
     /**
      * Expands list capacity
@@ -108,7 +117,7 @@ public class DynamicList<_Type> {
         
         m_data[index] = value;
 	
-	if (index >= m_size)
+	    if (index >= m_size)
             m_size += index - m_size + 1;
         else
             m_size++;
@@ -133,12 +142,15 @@ public class DynamicList<_Type> {
     }
     
     /** 
-     * Get an item from the Data Array (no exception handling)
+     * Get an item from the Data Array (no size handling)
      * @param index Position of the new item
      * @return An item from the Data Array
      */
     public _Type unsafe_get(int index)
     {
+        if(index >= m_data.length || index < 0)
+            throw new IllegalArgumentException("Out of Bounds!");
+
         return (_Type) m_data[index];
     }
 
@@ -151,6 +163,13 @@ public class DynamicList<_Type> {
         this.check_size();
         
         m_data[m_size++] = value;
+        LOGGER.log(Level.INFO, "Added to position {0}", (m_size - 1));
+    }
+
+    public void push_back(DynamicList<_Type> list)
+    {
+        this.check_size();
+    
         LOGGER.log(Level.INFO, "Added to position {0}", (m_size - 1));
     }
 
@@ -207,6 +226,15 @@ public class DynamicList<_Type> {
         LOGGER.log(Level.INFO, "Removed from position {0}", index);
     }
 
+    public void unsafe_remove(int index)
+    {
+        if(index >= m_data.length || index < 0)
+            throw new IllegalArgumentException("Out of Bounds!");
+
+        m_data[index] = null;
+        m_size--;
+    }
+
     /**
      * Reorder the Data Array removing the nullpointer between the values
      */
@@ -227,6 +255,15 @@ public class DynamicList<_Type> {
         m_size = pos;
     }
 
+    public Pair<Boolean, Integer> find(_Type value)
+    {
+        for(int i = 0; i < m_size; i++)
+            if(m_data[i].equals(value))
+                return new Pair<>(true, i);
+    
+        return new Pair<>(false, -1);
+    }
+
     /**
      * Return a String with the list content
      * @return A formatted string of list content
@@ -234,12 +271,18 @@ public class DynamicList<_Type> {
     @Override
     public String toString()
     {
-        String out = new String("{");
-        
+        String out = new String("{\"objects\":[");
+
+        if(empty())
+        {
+            out += "]";
+            return out;
+        }
+
         for(int i = 0; i < m_size; i++)
             if(m_data[i] != null)
                 if(i == m_size - 1)
-                    out += m_data[i].toString() + "}";
+                    out += m_data[i].toString() + "]}";
                 else
                     out += m_data[i].toString() + ", ";
 
@@ -252,17 +295,17 @@ public class DynamicList<_Type> {
      */
     public String toStringWithNullPositions()
     {
-        String out = new String("{");
+        String out = new String("{\"objects\":[");
         
         for(int i = 0; i < m_size; i++)
             if(m_data[i] != null)
                 if(i == m_size - 1)
-                    out += m_data[i].toString() + "}";
+                    out += m_data[i].toString() + "]}";
                 else
                     out += m_data[i].toString() + ", ";
             else
                 if(i == m_size - 1)
-                    out += "null}";
+                    out += "null]}";
                 else
                     out += "null, ";
         return out;

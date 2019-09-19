@@ -2,9 +2,9 @@ package horus;
 
 public class LoginTime
 {
-    int m_login;
-    int m_logout;
-    int m_time;
+    private int m_login;
+    private int m_logout;
+    private int m_time;
 
     public LoginTime(int login, int logout)
     {
@@ -34,6 +34,6 @@ public class LoginTime
     @Override
     public String toString()
     {
-        return "{in:" + m_login +", out:" + m_logout + ", usage:" + m_time +"}";
+        return "{\"in\":\"" + m_login +"\", \"out\":\"" + m_logout + "\", \"usage\":\"" + m_time +"\"}";
     }
 }
