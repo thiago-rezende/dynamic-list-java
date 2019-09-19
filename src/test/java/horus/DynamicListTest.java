@@ -80,7 +80,7 @@ public class DynamicListTest
     @Test public void size_validation()
     {
         DynamicList<Integer> list = new DynamicList<>();
-        assertEquals(list.size(), 0);    
+        assertEquals(list.size(), 0);
 
         list.push_back(10);
         assertEquals(list.get(0), (Integer) 10);
@@ -121,14 +121,14 @@ public class DynamicListTest
         assertNull(list.unsafe_get(3));
         assertEquals(list.size(), 2);
     }
-    
+
     @Test public void toString_validation()
     {
         DynamicList<Integer> list = new DynamicList<>();
         list.push_back(500);
         list.push_back(50);
 
-        String expected = "{500, 50}";
+        String expected = "{\"objects\":[500, 50]}";
         assertEquals(list.toString(), expected);
     }
 
@@ -138,7 +138,7 @@ public class DynamicListTest
         list.unsafe_add(500, 2);
         list.unsafe_add(50, 5);
 
-        String expected = "{null, null, 500, null, null, 50}";
+        String expected = "{\"objects\":[null, null, 500, null, null, 50]}";
         assertEquals(list.toStringWithNullPositions(), expected);
     }
 }

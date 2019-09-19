@@ -31,6 +31,10 @@ public class App {
         System.out.println(jobj.toString(2));
         usr_lst.remove_usersBeforeTime(8);
         System.out.println(usr_lst);
+        DynamicList<Integer> list = new DynamicList<>();
+        list.push_back(10);
+        list.push_back(10);
+        System.out.println(list);
     }
 
     public static void runTest()
@@ -48,7 +52,7 @@ public class App {
         list.pop_front();
 
         System.out.println(list);
-        
+
         LoginTime login = new LoginTime(5, 10);
         User usr = new User("Horus");
         usr.add_login(login);
