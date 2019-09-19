@@ -13,6 +13,13 @@ public class LoginTime
         calcUsageTime();
     }
 
+    public LoginTime()
+    {
+        m_login = 0;
+        m_logout = 0;
+        calcUsageTime();
+    }
+
     public int get_loginTime() { return m_login; }
     public int get_logoutTime() { return m_logout; }
     public int get_time() { return m_time; }

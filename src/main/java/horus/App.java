@@ -4,53 +4,80 @@
 package horus;
 
 import org.json.JSONObject;
-import java.io.File;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
 
 public class App {
     public static void main(String[] args)
     {
-        UserList usr_lst = new UserList();
-        LoginTime login = new LoginTime(5, 10);
-        LoginTime login1 = new LoginTime(7, 20);
-        User usr = new User("Horus");
-        User usr1 = new User("Aorus");
-        usr.add_login(login);
-        usr1.add_login(login1);
-        usr_lst.add_user(usr);
-        usr_lst.add_user(usr1);
-        usr_lst.sortByName();
-        usr_lst.sortByUsage();
-        System.out.println(usr_lst);
-        usr_lst.remove_usersBeforeTime(8);
-        System.out.println(usr_lst);
-        File data;
-        Scanner in;
-        String code;
-        User usuario;
-        LoginTime lg_time;
-        try{
-            data = new File("test.txt");
-            in = new Scanner(data);
+        UserList usr_list = new UserList();
+        Scanner in = new Scanner(System.in);
+        int opt;
 
-            while (in.hasNext()) {
-                usuario = new User();
-                lg_time = new LoginTime(0, 0);
-                usuario.set_name(in.next());
-                lg_time.set_loginTime(in.nextInt());
-                lg_time.set_logoutTime(in.nextInt());
-                usuario.add_login(lg_time);
-                usr_lst.add_user(usuario);
+        while(true)
+        {
+            show_menu();
+            System.out.print("In > ");
+            opt = in.nextInt();
+
+            switch(opt)
+            {
+                case 1:
+                    usr_list.read_file("test.txt");
+                    break;
+                case 2:
+                    usr_list.show_users();
+                    break;
+                case 3:
+                    System.out.print("name > ");
+                    usr_list.show_user(in.next());
+                    break;
+                case 4:
+                    System.out.print("time > ");
+                    usr_list.show_usersAfterTime(in.nextInt());
+                    break;
+                case 5:
+                    System.out.print("time > ");
+                    usr_list.remove_usersBeforeTime(in.nextInt());
+                    break;
+                case 6:
+                    usr_list.sortByName();
+                    break;
+                case 7:
+                    usr_list.sortByUsage();
+                    break;
+                case 8:
+                    show_json(usr_list);
+                    break;
+                case 9:
+                    System.exit(0);
+                    break;
+                default:
+                    break;
             }
-            in.close();
-        }
-        catch(FileNotFoundException e){
-            System.out.println(e);
         }
 
-        JSONObject jobj = new JSONObject(usr_lst.toString());
+    }
+
+    public static void show_menu()
+    {
+        String menu =
+        " ======= Testing Suit =======     \n" +
+        " 1 - Read File                    \n" +
+        " 2 - Show All Users               \n" +
+        " 3 - Show an User                 \n" +
+        " 4 - Show Users After a Time      \n" +
+        " 5 - Remove Users Before a Time   \n" +
+        " 6 - Sort by Name                 \n" +
+        " 7 - Sort by Usage                \n" +
+        " 8 - Show JSON                    \n" +
+        " 9 - Exit                         \n";
+
+        System.out.println(menu);
+    }
+
+    public static void show_json(UserList usr_list)
+    {
+        JSONObject jobj = new JSONObject(usr_list.toString());
         System.out.println(jobj.toString(2));
-
     }
 }

@@ -36,6 +36,10 @@ application {
     mainClassName = 'horus.App'
 }
 
+run{
+    standardInput = System.in
+}
+
 test {
     // Use TestNG for unit tests
     useTestNG()

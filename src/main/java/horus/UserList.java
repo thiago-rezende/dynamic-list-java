@@ -1,10 +1,41 @@
 package horus;
 
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class UserList extends DynamicList<User>
 {
     public UserList()
     {
         super();
+    }
+
+    public void read_file(String file_path)
+    {
+        File data;
+        Scanner in;
+        User usr;
+        LoginTime lg_time;
+
+        try{
+            data = new File("test.txt");
+            in = new Scanner(data);
+
+            while (in.hasNext()) {
+                usr = new User();
+                lg_time = new LoginTime(0, 0);
+                usr.set_name(in.next());
+                lg_time.set_loginTime(in.nextInt());
+                lg_time.set_logoutTime(in.nextInt());
+                usr.add_login(lg_time);
+                this.add_user(usr);
+            }
+            in.close();
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e);
+        }
     }
 
     public void add_user(User user)

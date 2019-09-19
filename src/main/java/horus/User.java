@@ -40,9 +40,9 @@ public class User
     {
         User user = (User) other;
 
-        if(m_name == user.get_name())
+        if(m_name.equals(user.get_name()))
             return true;
-        
+
         return false;
     }
 
