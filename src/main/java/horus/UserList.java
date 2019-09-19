@@ -1,7 +1,5 @@
 package horus;
 
-import java.util.function.Consumer; 
-
 public class UserList extends DynamicList<User>
 {
     public UserList()
@@ -93,25 +91,25 @@ public class UserList extends DynamicList<User>
     public void sortByName()
     {
         User aux = null;
-	
+
         for (int i = 0; i < this.m_size; i++) {
-            
+
             for (int j = 0; j < this.m_size; j++) {
                 User user_a = this.get(i);
                 User user_b = this.get(j);
-                
+
                 if(Character.toUpperCase(user_b.get_name().charAt(0)) > Character.toUpperCase(user_a.get_name().charAt(0))){
                     aux = user_a;
                     this.m_data[i] = user_b;
                     this.m_data[j] = aux;
-                
+
                 }else if(Character.toUpperCase(user_b.get_name().charAt(0)) == Character.toUpperCase(user_a.get_name().charAt(0))){
                     if(Character.toUpperCase(user_b.get_name().charAt(1)) > Character.toUpperCase(user_a.get_name().charAt(1))){
                         aux = user_a;
                         this.m_data[i] = user_b;
                         this.m_data[j] = aux;
-                    }	
-                    
+                    }
+
                 }
             }
         }

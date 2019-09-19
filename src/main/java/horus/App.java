@@ -4,17 +4,13 @@
 package horus;
 
 import org.json.JSONObject;
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class App {
     public static void main(String[] args)
     {
-//        UserList logins = new UserList();
-//        User usr = new User("Horus");
-//        LoginTime login = new LoginTime(5, 10);
-//        usr.add_login(login);
-//        logins.add_user(usr);
-//        logins.add_user(usr);
-//        System.out.println(logins);
         UserList usr_lst = new UserList();
         LoginTime login = new LoginTime(5, 10);
         LoginTime login1 = new LoginTime(7, 20);
@@ -27,37 +23,34 @@ public class App {
         usr_lst.sortByName();
         usr_lst.sortByUsage();
         System.out.println(usr_lst);
-        JSONObject jobj = new JSONObject(usr_lst.toString());
-        System.out.println(jobj.toString(2));
         usr_lst.remove_usersBeforeTime(8);
         System.out.println(usr_lst);
-        DynamicList<Integer> list = new DynamicList<>();
-        list.push_back(10);
-        list.push_back(10);
-        System.out.println(list);
-    }
+        File data;
+        Scanner in;
+        String code;
+        User usuario;
+        LoginTime lg_time;
+        try{
+            data = new File("test.txt");
+            in = new Scanner(data);
 
-    public static void runTest()
-    {
-        DynamicList<String> list = new DynamicList<>();
+            while (in.hasNext()) {
+                usuario = new User();
+                lg_time = new LoginTime(0, 0);
+                usuario.set_name(in.next());
+                lg_time.set_loginTime(in.nextInt());
+                lg_time.set_logoutTime(in.nextInt());
+                usuario.add_login(lg_time);
+                usr_lst.add_user(usuario);
+            }
+            in.close();
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e);
+        }
 
-        for(int i = 0; i < 11; i++)
-            list.push_back(String.format("%d", i));
+        JSONObject jobj = new JSONObject(usr_lst.toString());
+        System.out.println(jobj.toString(2));
 
-        list.push_front("Horus");
-        list.add("Thiago", 4);
-        list.remove(4);
-        list.add("Rezende", 4);
-        list.pop_back();
-        list.pop_front();
-
-        System.out.println(list);
-
-        LoginTime login = new LoginTime(5, 10);
-        User usr = new User("Horus");
-        usr.add_login(login);
-        DynamicList<User> users = new DynamicList<>();
-        users.push_back(usr);
-        System.out.println(users);
     }
 }

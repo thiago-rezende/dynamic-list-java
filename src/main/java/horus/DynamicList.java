@@ -33,8 +33,8 @@ public class DynamicList<_Type> {
         m_size = 0;
         LOGGER.setLevel(Level.SEVERE);
     }
-    
-    /** 
+
+    /**
      * Get the size of the Data Array
      * @return Size of the Data Array
      */
@@ -71,7 +71,7 @@ public class DynamicList<_Type> {
             this.expand();
     }
 
-    /** 
+    /**
      * Add a new item in a position of the list (ordering)
      * @param value Value to be added in the list
      * @param index Position of the new item
@@ -93,14 +93,14 @@ public class DynamicList<_Type> {
         {
             for(int i = m_size; i > index; i--)
                 m_data[i] = m_data[i - 1];
-        
+
             m_data[index] = value;
             m_size += index - m_size + 1;
             LOGGER.log(Level.INFO, "Added to position {0}", index);
         }
     }
 
-    /** 
+    /**
      * Add a new item in a position of the list (no ordering)
      * @param value Value to be added in the list
      * @param index Position of the new item
@@ -114,18 +114,18 @@ public class DynamicList<_Type> {
 
         for(int i = m_size; i > index; i--)
             m_data[i] = m_data[i - 1];
-        
+
         m_data[index] = value;
-	
+
 	    if (index >= m_size)
             m_size += index - m_size + 1;
         else
             m_size++;
-	    
+
         LOGGER.log(Level.INFO, "Added to position {0}", index);
     }
 
-    /** 
+    /**
      * Get an item from the Data Array
      * @param index Position of the new item
      * @return An item from the Data Array
@@ -134,14 +134,14 @@ public class DynamicList<_Type> {
     {
         if(index >= m_size || index < 0)
             throw new IllegalArgumentException("Out of Bounds!");
-        
+
 		if(m_data[index] == null)
 			throw new IllegalArgumentException("Uninitialized position!");
-        
+
         return (_Type) m_data[index];
     }
-    
-    /** 
+
+    /**
      * Get an item from the Data Array (no size handling)
      * @param index Position of the new item
      * @return An item from the Data Array
@@ -154,14 +154,14 @@ public class DynamicList<_Type> {
         return (_Type) m_data[index];
     }
 
-    /** 
+    /**
      * Add a new item to the bottom of the list
      * @param value Value to be added in the list
      */
     public void push_back(_Type value)
     {
         this.check_size();
-        
+
         m_data[m_size++] = value;
         LOGGER.log(Level.INFO, "Added to position {0}", (m_size - 1));
     }
@@ -169,11 +169,11 @@ public class DynamicList<_Type> {
     public void push_back(DynamicList<_Type> list)
     {
         this.check_size();
-    
+
         LOGGER.log(Level.INFO, "Added to position {0}", (m_size - 1));
     }
 
-    /** 
+    /**
      * Add a new item to the top of the list
      * @param value Value to be added in the list
      */
@@ -183,7 +183,7 @@ public class DynamicList<_Type> {
 
         for(int i = m_size; i > 0; i--)
             m_data[i] = m_data[i - 1];
-        
+
         m_data[0] = value;
         m_size++;
         LOGGER.log(Level.INFO, "Added to position 0");
@@ -193,7 +193,7 @@ public class DynamicList<_Type> {
     {
         if(m_size <= 0)
             return;
-        
+
         m_data[m_size - 1] = null;
         m_size--;
     }
@@ -202,14 +202,14 @@ public class DynamicList<_Type> {
     {
         if(m_size <= 0)
             return;
-        
+
         for(int i = 0; i < m_size; i++)
             m_data[i] = m_data[i + 1];
 
         m_size--;
     }
 
-    /** 
+    /**
      * Removes an object from the list
      * @param index Index of the object to be removed
      */
@@ -217,10 +217,10 @@ public class DynamicList<_Type> {
     {
         if(index >= m_size || index < 0)
             throw new IllegalArgumentException("Out of Bounds!");
-        
+
         for(int i = index; i < m_size; i++)
             m_data[i] = m_data[i + 1];
-        
+
         m_size--;
 
         LOGGER.log(Level.INFO, "Removed from position {0}", index);
@@ -260,7 +260,7 @@ public class DynamicList<_Type> {
         for(int i = 0; i < m_size; i++)
             if(m_data[i].equals(value))
                 return new Pair<>(true, i);
-    
+
         return new Pair<>(false, -1);
     }
 
@@ -275,7 +275,7 @@ public class DynamicList<_Type> {
 
         if(empty())
         {
-            out += "]";
+            out += "]}";
             return out;
         }
 
@@ -296,7 +296,7 @@ public class DynamicList<_Type> {
     public String toStringWithNullPositions()
     {
         String out = new String("{\"objects\":[");
-        
+
         for(int i = 0; i < m_size; i++)
             if(m_data[i] != null)
                 if(i == m_size - 1)
