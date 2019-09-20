@@ -49,6 +49,9 @@ public class App {
                     show_json(usr_list);
                     break;
                 case 9:
+                    clearList(usr_list);
+                    break;
+                case 0:
                     System.exit(0);
                     break;
                 default:
@@ -70,7 +73,8 @@ public class App {
         " 6 - Sort by Name                 \n" +
         " 7 - Sort by Usage                \n" +
         " 8 - Show JSON                    \n" +
-        " 9 - Exit                         \n";
+        " 9 - Clear List                   \n" +
+        " 0 - Exit                         \n";
 
         System.out.println(menu);
     }
