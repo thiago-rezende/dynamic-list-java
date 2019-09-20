@@ -2,3 +2,12 @@
 ![](https://github.com/thiago-rezende/dynamic-list-java/workflows/GitHub%20CI/badge.svg)
 
 A simple DynamicList implementation using Generics.
+
+ ### How to Use
+ - execute the following commands
+
+     ```
+     git clone https://github.com/thiago-rezende/dynamic-list-java.git
+     cd dynamic-list-java
+     ./gradlew run
+     ```
