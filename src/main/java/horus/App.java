@@ -6,7 +6,6 @@ package horus;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class App {
