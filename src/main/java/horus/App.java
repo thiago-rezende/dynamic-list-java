@@ -4,6 +4,9 @@
 package horus;
 
 import org.json.JSONObject;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class App {
@@ -83,6 +86,15 @@ public class App {
     {
         JSONObject jobj = new JSONObject(usr_list.toString());
         System.out.println(jobj.toString(2));
+
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("UserList.json")))) {
+            writer.write(jobj.toString(2));
+        } catch (IOException ex) {
+            // Report
+        }
+        /*ignore*/
+
     }
 
     public static void clearList(UserList usr_list)

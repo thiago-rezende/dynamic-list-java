@@ -1,0 +1,164 @@
+{"objects": [
+  {
+    "usage": "2",
+    "user": "theomartins",
+    "logins": [{
+      "in": "8",
+      "usage": "2",
+      "out": "10"
+    }]
+  },
+  {
+    "usage": "6",
+    "user": "daviaraújo",
+    "logins": [
+      {
+        "in": "6",
+        "usage": "4",
+        "out": "10"
+      },
+      {
+        "in": "21",
+        "usage": "2",
+        "out": "23"
+      }
+    ]
+  },
+  {
+    "usage": "11",
+    "user": "luizamendes",
+    "logins": [
+      {
+        "in": "12",
+        "usage": "8",
+        "out": "20"
+      },
+      {
+        "in": "15",
+        "usage": "3",
+        "out": "18"
+      }
+    ]
+  },
+  {
+    "usage": "6",
+    "user": "heitornascimento",
+    "logins": [
+      {
+        "in": "14",
+        "usage": "2",
+        "out": "16"
+      },
+      {
+        "in": "15",
+        "usage": "4",
+        "out": "19"
+      }
+    ]
+  },
+  {
+    "usage": "6",
+    "user": "helenaoliveira",
+    "logins": [{
+      "in": "6",
+      "usage": "6",
+      "out": "12"
+    }]
+  },
+  {
+    "usage": "6",
+    "user": "sauloalmeida",
+    "logins": [{
+      "in": "10",
+      "usage": "6",
+      "out": "16"
+    }]
+  },
+  {
+    "usage": "26",
+    "user": "valentinarodrigues",
+    "logins": [
+      {
+        "in": "14",
+        "usage": "7",
+        "out": "21"
+      },
+      {
+        "in": "15",
+        "usage": "7",
+        "out": "22"
+      },
+      {
+        "in": "6",
+        "usage": "9",
+        "out": "15"
+      },
+      {
+        "in": "9",
+        "usage": "3",
+        "out": "12"
+      }
+    ]
+  },
+  {
+    "usage": "13",
+    "user": "alicesilva",
+    "logins": [
+      {
+        "in": "6",
+        "usage": "8",
+        "out": "14"
+      },
+      {
+        "in": "11",
+        "usage": "5",
+        "out": "16"
+      }
+    ]
+  },
+  {
+    "usage": "7",
+    "user": "bernardopereira",
+    "logins": [{
+      "in": "9",
+      "usage": "7",
+      "out": "16"
+    }]
+  },
+  {
+    "usage": "13",
+    "user": "lorenzocarvalho",
+    "logins": [{
+      "in": "8",
+      "usage": "13",
+      "out": "21"
+    }]
+  },
+  {
+    "usage": "5",
+    "user": "manuelagomes",
+    "logins": [{
+      "in": "7",
+      "usage": "5",
+      "out": "12"
+    }]
+  },
+  {
+    "usage": "9",
+    "user": "miguelsouza",
+    "logins": [{
+      "in": "12",
+      "usage": "9",
+      "out": "21"
+    }]
+  },
+  {
+    "usage": "19",
+    "user": "heloísaalves",
+    "logins": [{
+      "in": "3",
+      "usage": "19",
+      "out": "22"
+    }]
+  }
+]}
