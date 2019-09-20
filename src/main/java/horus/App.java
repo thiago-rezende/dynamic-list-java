@@ -80,4 +80,10 @@ public class App {
         JSONObject jobj = new JSONObject(usr_list.toString());
         System.out.println(jobj.toString(2));
     }
+
+    public static void clearList(UserList usr_list)
+    {
+        while(!usr_list.empty())
+            usr_list.pop_back();
+    }
 }
